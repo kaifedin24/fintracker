@@ -129,3 +129,6 @@ dist
 #CREDENTIALS
 credentials/
 .env
+
+#MACSTUFF
+.DS_STORE
