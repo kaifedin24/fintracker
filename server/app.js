@@ -25,11 +25,17 @@ mongoose.connect(dbURL)
 
 
 //Get Bearer Token
-//app.use('/token', token);
+//app.use('/token', token); 
 /*app.get('/', (req,res) =>{
     res.status(400).send('<h1> HOME </h1>');
 })*/
 
-app.use('/paypal', pp);
+// app.use('/paypal', pp);
+app.post('/upload', (req, res) => {
+    res.send('POST');
+});
+// app.get('/upload', function (req, res) {
+//     res.send('GET to upload page')
+// });
 
 
