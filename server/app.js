@@ -3,13 +3,11 @@ const app = express()
 const mongo = require('mongodb').MongoClient
 const mongoose = require('mongoose');
 const axios = require('axios')
-//const token = require('./routes/token');
 const pp = require('./routes/pp-transactions')
+const currentDateISO8601 = require('./functions/date')
 require('dotenv').config();
 
 
-//const Trans = require('./models/transactions')
-//const Test = require('./models/test')
 console.log('Trying to start the server')
 
 //Connecto to DB & Start Server
@@ -24,12 +22,8 @@ mongoose.connect(dbURL)
 .catch((err) => console.log(err));
 
 
-//Get Bearer Token
-//app.use('/token', token);
-/*app.get('/', (req,res) =>{
-    res.status(400).send('<h1> HOME </h1>');
-})*/
-
 app.use('/paypal', pp);
+
+
 
 
