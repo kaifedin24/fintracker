@@ -31,11 +31,11 @@ mongoose.connect(dbURL)
 })*/
 
 // app.use('/paypal', pp);
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 app.post('/upload', (req, res) => {
-    res.send('POST');
+    console.log(req.body);
+    res.send(req.body);
 });
-// app.get('/upload', function (req, res) {
-//     res.send('GET to upload page')
-// });
 
 
