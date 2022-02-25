@@ -7,14 +7,24 @@ const App = () => {
   //Actual Upload Part
   const sendCSV = async (csvFile) => {
     const formData = new FormData();
-    formData.append('user-csv-file', csvFile.uri);
+    formData.append('csvFile', {
+      uri: csvFile.uri,
+      type: 'text/csv'
+    });
+    console.log(formData);
+    axios.post('http://10.0.2.2:4000/upload', formData, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'multipart/form-data'
+      }
+    });
   }
   //Picking the CSV Part
   const selectCSV = async () => {
     try {
       const pickerResult = await DocumentPicker.pickSingle({
         presentationStyle: 'fullScreen',
-        type: DocumentPicker.types.csv
+        // type: DocumentPicker.types.csv
       })
       sendCSV(pickerResult);
     } catch (e) {

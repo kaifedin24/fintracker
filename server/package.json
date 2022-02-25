@@ -15,7 +15,8 @@
     "axios": "^0.26.0",
     "express": "^4.17.3",
     "mongodb": "^4.4.0",
-    "mongoose": "^6.2.2"
+    "mongoose": "^6.2.2",
+    "multer": "^1.4.4"
   },
   "devDependencies": {
     "dotenv": "^16.0.0",

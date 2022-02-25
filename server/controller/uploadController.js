@@ -1,5 +1,6 @@
 const csv_upload = (req, res) => {
-    console.log(req.body);
+    console.log(req.file);
+    console.log('Stuff works here as well!');
     res.status(201).send('It worked');
 }
 

@@ -1,16 +1,20 @@
+//Express App Initialization
 const express = require('express')
 const app = express()
+
+//MongoDB Initial
 const mongo = require('mongodb').MongoClient
 const mongoose = require('mongoose');
-//const token = require('./routes/token');
+
+//Express Router Routes
 const pp = require('./routes/pp-transactions')
 const upload = require('./routes/uploadRoute')
+
+//Misc
 require('dotenv').config();
 
-
+//Connect to DB & Start Server
 console.log('Trying to start the server')
-
-//Connecto to DB & Start Server
 const dbURL = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPW}@cluster0.q3ylm.mongodb.net/fintracker?retryWrites=true&w=majority`
 mongoose.connect(dbURL)
 .then((result) => {
