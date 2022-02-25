@@ -12,6 +12,8 @@ require('dotenv').config();
 //const Test = require('./models/test')
 console.log('Trying to start the server')
 
+const androidEnvURL = 'http://10.0.2.2:4000';
+
 //Connecto to DB & Start Server
 const dbURL = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPW}@cluster0.q3ylm.mongodb.net/fintracker?retryWrites=true&w=majority`
 mongoose.connect(dbURL)
@@ -35,7 +37,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.post('/upload', (req, res) => {
     console.log(req.body);
-    res.send(req.body);
+    res.status(201).send('It worked');
 });
 
 
