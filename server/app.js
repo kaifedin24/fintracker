@@ -2,17 +2,13 @@ const express = require('express')
 const app = express()
 const mongo = require('mongodb').MongoClient
 const mongoose = require('mongoose');
-const axios = require('axios')
 //const token = require('./routes/token');
 const pp = require('./routes/pp-transactions')
+const upload = require('./routes/uploadRoute')
 require('dotenv').config();
 
 
-//const Trans = require('./models/transactions')
-//const Test = require('./models/test')
 console.log('Trying to start the server')
-
-const androidEnvURL = 'http://10.0.2.2:4000';
 
 //Connecto to DB & Start Server
 const dbURL = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPW}@cluster0.q3ylm.mongodb.net/fintracker?retryWrites=true&w=majority`
@@ -25,19 +21,9 @@ mongoose.connect(dbURL)
 })
 .catch((err) => console.log(err));
 
-
-//Get Bearer Token
-//app.use('/token', token); 
-/*app.get('/', (req,res) =>{
-    res.status(400).send('<h1> HOME </h1>');
-})*/
-
-// app.use('/paypal', pp);
+//This is necessary to make the upload POST-requests
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-app.post('/upload', (req, res) => {
-    console.log(req.body);
-    res.status(201).send('It worked');
-});
 
-
+//Route for the upload handling (Maybe unnecessary tbh)
+app.use('/upload', upload);
