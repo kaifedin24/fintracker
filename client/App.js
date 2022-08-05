@@ -1,50 +1,44 @@
-import React from 'react';
-const axios = require('axios');
-import { Text, View, Button } from 'react-native';
-import DocumentPicker from 'react-native-document-picker';
+import { TailwindProvider } from 'tailwindcss-react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from './screens/HomeScreen';
+import UpdateFinancesScreen from './screens/UpdateFinancesScreen';
+import TagScreen from './screens/TagScreen';
+import { HomeIcon, CreditCardIcon, TagIcon } from "react-native-heroicons/solid"
+import { HomeIcon as HomeIconOutline, CreditCardIcon as CreditCardIconOutline,
+  TagIcon as TagIconOutline } from "react-native-heroicons/outline"
 
-const App = () => {
-  //Actual Upload Part
-  const sendCSV = async (csvFile) => {
-    const formData = new FormData();
-    formData.append('csvFile', {
-      uri: csvFile.uri,
-      type: 'text/csv'
-    });
-    console.log(formData);
-    axios.post('http://10.0.2.2:4000/upload', formData, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-  }
-  //Picking the CSV Part
-  const selectCSV = async () => {
-    try {
-      const pickerResult = await DocumentPicker.pickSingle({
-        presentationStyle: 'fullScreen',
-        // type: DocumentPicker.types.csv
-      })
-      sendCSV(pickerResult);
-    } catch (e) {
-      handleError(e)
-    }
-  }
+const Tab = createBottomTabNavigator();
+// const Drawer = createDrawerNavigator();
+
+export default function App() {
 
   return (
-    <View style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-      <Text>Hello, world!</Text>
-      <Button
-        title="Upload CSV"
-        onPress={selectCSV}
-      />
-    </View>
+    <NavigationContainer>
+      <TailwindProvider>
+          <Tab.Navigator screenOptions={{
+            headerShown: false
+          }}>
+              <Tab.Screen name="Home" component={HomeScreen} options={{
+                tabBarIcon: ({focused, color, size}) => {
+                  if (focused) return <HomeIcon color="#3B82F6" />
+                  else return <HomeIconOutline color="#3B82F6" />
+                }
+              }} />
+              <Tab.Screen name="Update" component={UpdateFinancesScreen} options={{
+                tabBarIcon: ({focused, color, size}) => {
+                  if (focused) return <CreditCardIcon color="#3B82F6" />
+                  else return <CreditCardIconOutline color="#3B82F6" />
+                }
+              }} />
+              <Tab.Screen name="Tags" component={TagScreen} options={{
+                tabBarIcon: ({focused, color, size}) => {
+                  if (focused) return <TagIcon color="#3B82F6" />
+                  else return <TagIconOutline color="#3B82F6" />
+                }
+              }} />
+          </Tab.Navigator>
+      </TailwindProvider>
+    </NavigationContainer>
   );
 }
-
-export default App;

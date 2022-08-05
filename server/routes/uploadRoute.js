@@ -10,12 +10,12 @@ const storage = multer.diskStorage({
         cb(null, './uploads');
     },
     filename: function(req, file, cb) {
+        console.log(file)
         cb(null, file.originalname);
     }
 });
 
 const upload = multer({storage: storage});
-
 
 router.post('/', upload.single('csvFile'), csv_upload);
 
