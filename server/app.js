@@ -1,5 +1,7 @@
+//Express App Initialization
 const express = require('express')
 const app = express()
+
 const mongo = require('mongodb').MongoClient
 const mongoose = require('mongoose');
 const pp = require('./routes/pp-transactions');
@@ -24,7 +26,6 @@ mongoose.connect(dbURL)
     })
 })
 .catch((err) => console.log(err));
-
 
 
 app.use('/paypal', pp);
