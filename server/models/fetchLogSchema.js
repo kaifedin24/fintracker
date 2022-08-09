@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { model } = require('mongoose');
 const Schema = mongoose.Schema;
 
 const fetchLogSchema = {
@@ -7,7 +8,7 @@ const fetchLogSchema = {
         require: true
     },
     timeISO: {
-        type: String, 
+        type: Object, 
         require: true
     }
 }

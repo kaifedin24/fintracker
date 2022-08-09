@@ -1,7 +1,9 @@
 const axios = require('axios');
-const fetch = require('cross-fetch');
+var qs = require('qs');
+//const fetch = require('cross-fetch');
 require('dotenv').config();
 
+/*
 const getBearerToken = (req,res) =>{
     async () => {
     try {
@@ -29,11 +31,27 @@ const getBearerToken = (req,res) =>{
     }};
 
 }
+*/
 
+var data = qs.stringify({
+  'grant_type': 'client_credentials' 
+});
+var config = {
+  method: 'post',
+  url: 'https://api.paypal.com/v1/oauth2/token',
+  headers: { 
+    'Authorization': `Basic ${Buffer.from(`${process.env.CLIENTID}:${process.env.SECRET}`, 'utf8').toString('base64')}`, 
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
 
-
-const tokenTest = (req,res) =>{
-    res.send('<h1> TOKEN/TEST </h1>');
+  data : data
 };
 
-module.exports = {getBearerToken,getBearerToken, tokenTest};
+
+async function getBearerToken(){
+  let token = await axios(config)
+  return token.data.access_token;
+};
+
+
+module.exports = {getBearerToken}; 
