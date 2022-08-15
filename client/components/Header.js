@@ -1,16 +1,17 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { UserIcon } from 'react-native-heroicons/solid'
+import { CogIcon, UserIcon } from 'react-native-heroicons/solid'
+import { TailwindProvider } from 'tailwindcss-react-native';
 
-const Header = () => {
+const Header = ({title, subtitle}) => {
   return (
-            <View className="h-12 flex flex-row items-center justify-between bg-gray-800">
-                <View className="flex ml-2 p-1">
-                    <Text className="text-gray-100 -mb-1">Welcome back,</Text>
-                    <Text className="font-bold text-lg text-blue-500 -mt-1">Pascal</Text>
+            <View className="h-18 flex flex-row items-center justify-between bg-fin-offwhite">
+                <View className="flex ml-5 mt-8">
+                    <Text className="font-bold text-black text-3xl">{title}</Text>
+                    <Text className="font-bold text-lg text-fin-grey">{subtitle}</Text>
                 </View>
-                <View className="p-1 mr-2">
-                    <UserIcon size={20} color="#3B82F6" />
+                <View className="mr-2">
+                    <CogIcon size={24} color="black" />
                 </View>
             </View>
   )

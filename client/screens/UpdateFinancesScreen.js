@@ -34,9 +34,7 @@ const UpdateFinancesScreen = () => {
   return (
     <SafeAreaView>
         <View style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}>
-            <View>
-                <Header />
-                <View className="bg-gray-700 h-full">
+            <View className="bg-fin-offwhite">
                   <View className="flex items-center mt-6">
                     <Text className="text-4xl font-bold text-center text-white">Upload a new CSV</Text>
                     <Pressable onPress={chooseFile} className="bg-blue-500 rounded-md h-8 w-32 flex items-center justify-center mt-4">
@@ -48,7 +46,6 @@ const UpdateFinancesScreen = () => {
                   </View>
                 </View>
             </View>
-        </View>
     </SafeAreaView>
   )
 }

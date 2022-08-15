@@ -2,11 +2,11 @@ import {  View, Text, SafeAreaView, StatusBar, ScrollView, Image } from 'react-n
 import React from 'react'
 import Header from '../components/Header'
 
-const TagScreen = () => {
+const StatsScreen = () => {
   return (
     <SafeAreaView>
         <View style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}>
-            <Header title="Your Tags" subtitle="TagTagTag" />
+            <Header title="Your Stats" subtitle="Good Luck" />
             <ScrollView className="bg-fin-offwhite h-full">
             </ScrollView>
         </View>
@@ -14,4 +14,4 @@ const TagScreen = () => {
   )
 }
 
-export default TagScreen
+export default StatsScreen
