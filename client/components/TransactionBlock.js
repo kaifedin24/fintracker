@@ -1,7 +1,6 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import Transaction from './Transaction'
-import { TailwindProvider } from 'tailwindcss-react-native'
 import { ArrowRightIcon, ArrowSmRightIcon } from 'react-native-heroicons/solid'
 
 const TransactionBlock = () => {
