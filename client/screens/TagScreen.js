@@ -25,14 +25,18 @@ const TagScreen = () => {
 
   return (
     <SafeAreaView>
-        <View style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}>
+        <View style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }} className="bg-fin-offwhite">
             <Header title="Your Tags" subtitle="TagTagTag" />
 
             {/* //If Number is smaller than a certain threshold, */}
             {/* //dont' display the untagged Transaction Alert */}
-            { untaggedTransCount() > 5 ? <UntaggedTransAlert /> : <></>}
+            <View className="flex items-center mt-5">
+              { untaggedTransCount() > 5 ? <UntaggedTransAlert untaggedCount={untaggedTrans} /> : <></>}
+            </View>
 
-            <ScrollView className="bg-fin-offwhite h-full"></ScrollView>
+            <ScrollView className="h-full">
+              
+            </ScrollView>
         </View>
     </SafeAreaView>
   )
