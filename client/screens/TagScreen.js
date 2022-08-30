@@ -47,6 +47,7 @@ const TagScreen = () => {
   useFocusEffect(
     React.useCallback(() => {
       //Make API Calls
+      //Emulating fecthing the data
       setSortedTags(tags);
       setUntaggedTrans(6);
     }, [])
@@ -58,15 +59,11 @@ const TagScreen = () => {
     else setSortedTags(tags.sort((a, b) => {return b.count - a.count;}));
   }, [nameSortActive])
 
-  const screenHeight = Dimensions.get('window').height;
-
   return (
     <SafeAreaView>
         <View style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }} className="bg-fin-offwhite">
           <ScrollView showsVerticalScrollIndicator={false}>
             <Header title="Your Tags" subtitle="TagTagTag" />
-            {/* //If Number is smaller than a certain threshold, */}
-            {/* //dont' display the untagged Transaction Alert */}
             <View className="flex items-center mt-5">
               { untaggedTrans > 5 ? <UntaggedTransAlert untaggedCount={untaggedTrans} /> : <></>}
             </View>

@@ -16,8 +16,7 @@ console.log('Trying to start the server')
 
 //Connecto to DB & Start Server
 const dbURL = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPW}@cluster0.q3ylm.mongodb.net/fintracker?retryWrites=true&w=majority`
-//@cluster0.q3ylm.mongodb.net/fintracker?retryWrites=true&w=majority
-//@cluster0.q3ylm.mongodb.net/?retryWrites=true&w=majority
+
 mongoose.connect(dbURL)
 .then((result) => {
     console.log('connected to db');

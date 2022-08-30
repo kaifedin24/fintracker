@@ -69,4 +69,4 @@ function dateDiffInDays(a, b) {
 
 
 //022-02-17T00:00:00-0100
-module.exports = {convertDateISO8601, getLastPPFetchDate, dateDiffInDays,convertDateISO8601UTC};
+module.exports = {getLastPPFetchDate, dateDiffInDays};

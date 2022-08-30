@@ -34,6 +34,7 @@ async function conf(start, end){
         method: 'get',
         //url: `https://api.paypal.com/v1/reporting/transactions?start_date=${await getLastPPFetchDate()}&fields=all&end_date=${currentDateISO8601()}`,
         url: `https://api.paypal.com/v1/reporting/transactions?start_date=${start.toISOString()}&fields=all&end_date=${end.toISOString()}`,
+        // url: `https://api.paypal.com/v1/reporting/transactions?start_date=2022-08-04T10:30:59Z&fields=all&end_date=2022-08-28T11:15:24.929Z`,
         headers: { 
             'Authorization': `Bearer ${await getBearerToken()}`
     }
