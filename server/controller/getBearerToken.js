@@ -8,10 +8,8 @@ const dotenv = require('dotenv')
 //otherwise CLIENTID and SECRET will be undefined/not found
 dotenv.config({ path: '../.env'})
 
-//ClientID and Secret have to be encoded (seperately!) to base64 for Auth
-//Then concat the two strings with '+'
-const base64EncodedAuth = (Buffer.from(`${process.env.CLIENTID}`).toString('base64'))+(Buffer.from(`${process.env.SECRET}`).toString('base64'));
-
+//ClientID and Secret have to be encoded in base64
+const base64EncodedAuth = (Buffer.from(`${process.env.CLIENTID}:${process.env.SECRET}`).toString('base64'));
 
 async function getBearerToken(){
   //Config that is required for the API Call to be successfull
@@ -20,16 +18,18 @@ async function getBearerToken(){
     url: 'https://api.paypal.com/v1/oauth2/token',
     headers: { 
       'Authorization': `Basic ${base64EncodedAuth}`,
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
     },
-    data : "grant_type=client_credentials"
+    data: "grant_type=client_credentials"
   };
-
   //Make the API call and safe it in response
   const response = await axios(config);
 
   //Only returns the access_token from the response object
+  console.log(response.data);
   return response.data.access_token;
 };
+
+getBearerToken();
 
 module.exports = {getBearerToken};
