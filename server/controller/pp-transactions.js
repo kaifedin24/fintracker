@@ -1,43 +1,23 @@
+//Get environment variables to be able to fetch correct data
 require('dotenv').config();
 const axios = require('axios');
 const {convertDateISO8601, getLastPPFetchDate, convertDateISO8601UTC, dateDiffInDays} = require('../functions/date');
 const transaction = require('../models/transactionSchema');
-const fetchLog = require('../functions/logging')
 const {checkCredit, setName, setNoteSubj} = require('../functions/parse_transactions');
-const { getBearerToken } = require('./token');
+const { getBearerToken } = require('./getBearerToken');
 const logDate = require('../functions/logging');
 
 
-
-/*
-const fetchTransUrlBase = "https://api.paypal.com/v1/reporting/transactions";
-async function fetchTransUrlParams() {
-    //Get Last fetched PP TIME for Start Date
-
-    //Placeholder
-    //return `?start_date=${TransStartDatePlaceholder}&end_date=${TransEndDatePlaceholder}&fields=all`
-    
-    //LiveStart Date & EndDate
-    return (`?start_date=${await getLastPPFetchDate()}&end_date=${currentDateISO8601()}&fields=all`);
-}
-async function fetchTransUrl() {
-    
-    TransUrl = fetchTransUrlBase + await fetchTransUrlParams();
-    console.log(TransUrl);
-    return TransUrl;
-
-}
-*/
 async function conf(start, end){
-
-    conf = await {
+    //conf
+    let conf = await {
         method: 'get',
-        //url: `https://api.paypal.com/v1/reporting/transactions?start_date=${await getLastPPFetchDate()}&fields=all&end_date=${currentDateISO8601()}`,
+        //Endpoint to get the Transaction JSON back
+        //Customize Start-/Enddate to get expected results.
         url: `https://api.paypal.com/v1/reporting/transactions?start_date=${start.toISOString()}&fields=all&end_date=${end.toISOString()}`,
-        // url: `https://api.paypal.com/v1/reporting/transactions?start_date=2022-08-04T10:30:59Z&fields=all&end_date=2022-08-28T11:15:24.929Z`,
         headers: { 
             'Authorization': `Bearer ${await getBearerToken()}`
-    }
+        }
     }
     console.log(conf);
     return conf;
